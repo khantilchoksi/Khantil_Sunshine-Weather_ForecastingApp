@@ -1,5 +1,6 @@
 package com.example.android.sunshine.app;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -59,7 +61,7 @@ public class ForecastFragment extends Fragment {
             //FetchWeatherTask weatherTask = new FetchWeatherTask();
             //weatherTask.execute();
             FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute("94043");
+            weatherTask.execute("390022");
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -94,6 +96,21 @@ public class ForecastFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listView_forecast);
         listView.setAdapter(forecastAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String forecast = forecastAdapter.getItem(position);
+                /*CharSequence text = (CharSequence) forecastAdapter.getItem(position);
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(getActivity(),text,duration);
+                toast.show();*/
+
+                Intent detailActivityIntent = new Intent(getActivity() ,DetailActivity.class).putExtra(Intent.EXTRA_TEXT,forecast);
+                startActivity(detailActivityIntent);
+            }
+        });
 
         return rootView;
     }
