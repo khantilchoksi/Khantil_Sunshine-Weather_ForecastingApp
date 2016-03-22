@@ -66,4 +66,25 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
+    <!-- Label for location-->
+    <string name= "pref_location_label">Location</string>
+
+    <!-- Key name for storing location-->
+    <string name="pref_location_key" translatable="false">location</string>
+
+    <!-- Default postal code for location-->
+    <string name="pref_location_default" translatable="false">390022</string>
+
+    <string name="pref_units_label">Temperature</string>
+
+    <string name="pref_units_key">units</string>
+
+    <!-- Temperature Labels-->
+    <string name="pref_units_label_metric">Metric</string>
+    <string name="pref_units_label_imperial">Imperial</string>
+
+    <!-- Deafault value for units-->
+    <string name="pref_units_metric" translatable="false">metric</string>
+    <string name="pref_units_imperial" translatable="false">imperial</string>
+
 </resources>
