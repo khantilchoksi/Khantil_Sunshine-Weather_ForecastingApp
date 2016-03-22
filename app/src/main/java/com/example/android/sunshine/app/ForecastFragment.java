@@ -62,6 +62,9 @@ public class ForecastFragment extends Fragment {
             //weatherTask.execute();
             updateWeather();
             return true;
+        } else if(id == R.id.action_location) {
+            openPreferredLocationMap();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -128,6 +131,20 @@ public class ForecastFragment extends Fragment {
     public void onStart(){
         super.onStart();
         updateWeather();
+    }
+
+    private void openPreferredLocationMap(){
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String loc = pref.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+
+        Uri geoLocation = Uri.parse("geo:0,0?").buildUpon().
+                appendQueryParameter("q",loc).build();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if(intent.resolveActivity(getActivity().getPackageManager()) != null){
+            startActivity(intent);
+        }
     }
 
 
